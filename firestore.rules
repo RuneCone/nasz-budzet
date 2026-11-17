@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Dostęp tylko do znanej ścieżki /households/<kod>/..., nie da się wylistować wszystkich budżetów.
+    match /households/{hid}/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
